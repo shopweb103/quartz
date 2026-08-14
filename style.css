@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #0f172a;
+    color: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 450px;
+    height: 90vh;
+    background: #1e293b;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.chat-header {
+    background: #334155;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #475569;
+}
+
+.username-box {
+    padding: 10px 15px;
+    background: #0f172a;
+}
+
+.username-box input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: #1e293b;
+    color: #fff;
+    outline: none;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    padding: 10px 14px;
+    border-radius: 12px;
+    max-width: 75%;
+    word-break: break-word;
+}
+
+/* অন্যের মেসেজ (বামপাশে থাকবে) */
+.other-message {
+    background: #334155;
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+}
+
+.other-message .meta span:first-child {
+    color: #38bdf8; /* অন্যের নামের কালার */
+}
+
+/* তোমার নিজের মেসেজ (ডানপাশে থাকবে) */
+.my-message {
+    background: #0284c7;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+}
+
+.my-message .meta span:first-child {
+    color: #e0f2fe; /* নিজের নামের কালার */
+}
+
+.message .meta {
+    font-size: 0.75rem;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    opacity: 0.9;
+}
+
+.message .text {
+    font-size: 0.95rem;
+}
+
+.chat-form {
+    display: flex;
+    padding: 10px;
+    background: #0f172a;
+    gap: 8px;
+}
+
+.chat-form input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: #1e293b;
+    color: #fff;
+    outline: none;
+}
+
+.chat-form button {
+    padding: 10px 18px;
+    border: none;
+    background: #38bdf8;
+    color: #0f172a;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.chat-form button:hover {
+    background: #0284c7;
+    color: #fff;
+}

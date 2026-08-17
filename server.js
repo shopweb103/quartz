@@ -1,0 +1,44 @@
+const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
+const path = require('path');
+
+const app = express();
+const server = http.createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
+
+const PORT = process.env.PORT || 10000;
+
+app.use(express.static(__dirname));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// লাইভ চ্যাট লজিক (senderId সহ ফেরত পাঠানো হচ্ছে)
+io.on('connection', (socket) => {
+  console.log('User connected:', socket.id);
+
+  socket.on('sendMessage', (data) => {
+    io.emit('receiveMessage', {
+      user: data.user || 'Anonymous',
+      text: data.text,
+      senderId: data.senderId, // <--- এই লাইনটি সবচেয়ে গুরুত্বপূর্ণ!
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    });
+  });
+
+  socket.on('disconnect', () => {
+    console.log('User disconnected:', socket.id);
+  });
+});
+
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
